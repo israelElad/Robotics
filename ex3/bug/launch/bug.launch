@@ -1,0 +1,29 @@
+<launch>
+    
+    <param name="/use_sim_time" value="true" />
+
+    <!-- Launch turtle bot world -->
+    <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+
+    <!-- tf broadcaster node -->
+    <node pkg="bug" type="tf_broadcaster.py" args="/turtle1" name="turtle1_tf_broadcaster">
+		<param name="turtle" type="string" value="turtle1" />
+	 </node>
+
+    <!-- tf listener node -->
+    <node pkg="bug" type="tf_listener.py" name="listener" />
+
+    <!-- Publish a static transformation between /odom and /map -->
+    <node name="tf" pkg="tf" type="static_transform_publisher" args="-1 -2 0 0 0 0 /map /odom 100" />
+
+    <!-- Run node -->
+    <node name="bug_node" pkg="bug" type="bug_node.py" output="screen">
+        <param name="forward_speed" type="double" value="0.4"/>
+    	<param name="rotation_speed" type="double" value="0.7"/>
+    	<param name="min_scan_angle" type="double" value="-40"/>
+    	<param name="max_scan_angle" type="double" value="40"/>
+    	<param name="min_dist_from_obstacle" type="double" value="1.6"/>
+    	<param name="goal_x" type="double" value="-7.0"/>
+    	<param name="goal_y" type="double" value="-5.0"/>
+    </node>
+</launch>

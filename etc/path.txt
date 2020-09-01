@@ -1,0 +1,11 @@
+row:20	col:17
+row:21	col:17
+row:22	col:17
+row:23	col:17
+row:24	col:17
+row:25	col:17
+row:26	col:17
+row:26	col:16
+row:26	col:15
+row:26	col:14
+row:26	col:13
